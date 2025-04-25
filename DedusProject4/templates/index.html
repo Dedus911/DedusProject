@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Pavel Combat</title>
     <script>
-        let audio = new Audio("/static/audio/background.mp3");
+        let audio = new Audio("/static/audio/background1.mp3");
         document.addEventListener("click", () => {
             if (audio.paused) {
                 audio.play().catch(error => console.log("Автозапуск звука заблокирован браузером: ", error));
@@ -19,8 +19,8 @@
         async function updateState() {
             let response = await fetch('/state');
             let data = await response.json();
-            document.getElementById("coins").innerText = data.coins;
-            document.getElementById("coins-m").innerText = data.coins;
+            document.getElementById("cookie").innerText = data.coins;
+            document.getElementById("cookie-m").innerText = data.coins;
             document.getElementById("auto").innerText = data.auto;
             document.getElementById("auto-m").innerText = data.auto;
             document.getElementById("upgrade").innerText = data.upgrade;
@@ -301,7 +301,7 @@
                 </a>
             </td>
             <td width="80%" colspan="2">
-                <div class="pointslabel-mobile">cookies: <span id="cookies-m">0</span></div>
+                <div class="pointslabel-mobile">cookie: <span id="cookie-m">0</span></div>
             </td>
             <td width="10%">
                 <a href={{url_for('rating')}}>
@@ -363,7 +363,7 @@
         </tr>
         <tr>
             <td colspan="4">
-                <div class="pointslabel-pc">cookies: <span id="cookies">0</span></div>
+                <div class="pointslabel-pc">cookie: <span id="cookie">0</span></div>
             </td>
         </tr>
         <tr>
