@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<bgsound src="static/audio/backgound.mp3" loop="1" volume="-1000" balance="0"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Аникин Тимофей">
+    <meta name="discription" content="clicker">
+    <meta name="keywords" content="clicker,cookie,game,кликер,куки,игра">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Pavel Combat</title>
+    <script>
+        let audio = new Audio("/static/audio/background.mp3");
+        document.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Автозапуск звука заблокирован браузером: ", error));
+            }
+        });
+        audio.loop = true;
+        async function updateState() {
+            let response = await fetch('/state');
+            let data = await response.json();
+            document.getElementById("coins").innerText = data.coins;
+            document.getElementById("coins-m").innerText = data.coins;
+            document.getElementById("auto").innerText = data.auto;
+            document.getElementById("auto-m").innerText = data.auto;
+            document.getElementById("upgrade").innerText = data.upgrade;
+            document.getElementById("upgrade-m").innerText = data.upgrade;
+
+        }
+        async function clickButton() {
+            await fetch('/click', { method: 'POST' });
+            updateState();
+
+        }
+
+        async function buyAutoclicker() {
+            await fetch('/buy_autoclicker', { method: 'POST' });
+            updateState();
+        }
+        async function buyUpgrade() {
+            await fetch('/buy_upgrade', { method: 'POST' });
+            updateState();
+        }
+
+
+        setInterval(updateState, 1000);
+    </script>
+
+    <style>
+
+        @media  screen and (min-width: 700px) {
+          .tabl-pc {
+            display: block
+
+          }
+          .tabl-mobile {
+            display: none
+          }
+        }
+
+        @media  screen and (max-width: 700px) {
+          .tabl-pc {
+            display: none
+          }
+          .tabl-mobile {
+            display: block
+          }
+        }
+        body {
+            background-image: url('static/images/backgroundimg.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+
+
+        .heading-mobile {
+             text-align: center;
+             font-size: 200%;
+             color: rgb(246, 100, 0);
+            font-family: impact;
+             text-shadow: 1px 1px 1px #957dad,
+             1px 2px 1px #957dad,
+             1px 3px 1px #957dad,
+             1px 4px 1px #957dad,
+             1px 5px 1px #957dad,
+             1px 6px 1px #957dad,
+             1px 10px 5px rgba(16, 16, 16, 0.5),
+             1px 15px 10px rgba(16, 16, 16, 0.4),
+             1px 20px 30px rgba(16, 16, 16, 0.3),
+             1px 25px 50px rgba(16, 16, 16, 0.2);
+             bold;
+        }
+
+        .heading-pc {
+             text-align: center;
+             font-size: 500%;
+             color: rgb(246, 100, 0);
+            font-family: impact;
+             text-shadow: 1px 1px 1px #957dad,
+             1px 2px 1px #957dad,
+             1px 3px 1px #957dad,
+             1px 4px 1px #957dad,
+             1px 5px 1px #957dad,
+             1px 6px 1px #957dad,
+             1px 10px 5px rgba(16, 16, 16, 0.5),
+             1px 15px 10px rgba(16, 16, 16, 0.4),
+             1px 20px 30px rgba(16, 16, 16, 0.3),
+             1px 25px 50px rgba(16, 16, 16, 0.2);
+             bold;
+        }
+
+        .pointslabel-mobile {
+             text-align: center;
+             font-size: 18pt;
+             color:  rgb(203, 154, 86);
+            font-family: impact;
+             margin: 0% 0% 5% 0%;
+             background-size: cover;
+              -webkit-background-clip: text;
+              background-clip: text;
+              -moz-text-fill-color: transparent;
+              -webkit-text-fill-color: transparent;
+              background-image: url(static/images/gold.jpg);
+             bold;
+
+        }
+
+        .pointslabel-pc {
+             text-align: center;
+             font-size: 40pt;
+            font-family: impact;
+             margin: 0% 0% 5% 0%;
+              background-size: cover;
+              -webkit-background-clip: text;
+              background-clip: text;
+              -moz-text-fill-color: transparent;
+              -webkit-text-fill-color: transparent;
+              background-image: url(static/images/gold.jpg);
+             bold;
+        }
+
+
+        .tablelabelL-pc {
+             text-align: left;
+             font-size: 40pt;
+             color: rgb(255, 167, 99);
+            font-family: impact;
+             text-shadow: 3px 3px 2px black;
+
+        }
+
+        .tablelabelL-mobile {
+             text-align: left;
+             font-size: 20pt;
+             color: rgb(255, 167, 99);
+            font-family: impact;
+             text-shadow: 3px 3px 2px black;
+        }
+
+         .tablelabelR-pc {
+             text-align: right;
+             font-size: 40pt;
+             color: rgb(218, 232, 111);
+             font-family: impact;
+             text-shadow: 3px 3px 2px black;
+        }
+
+        .tablelabelR-mobile {
+             text-align: right;
+             font-size: 20pt;
+             color: rgb(218, 232, 111);
+            font-family: impact;
+             text-shadow: 3px 3px 2px black;
+        }
+
+        .tablelabelC-pc {
+             text-align: center;
+             font-size: 50pt;
+             color: rgb(177, 45, 210);
+            font-family: impact;
+             background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
+              background-size: 200% auto;
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              animation: textflow 4s linear infinite;
+             bold;
+        }
+
+        .tablelabelC-mobile {
+             text-align: center;
+             font-size: 21pt;
+            font-family: impact;
+             margin: 2% 10% 8% 10%;
+             background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
+              background-size: 200% auto;
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              animation: textflow 4s linear infinite;
+             bold;
+        }
+
+        .tabl {
+              width: 100%;
+              height: 20;
+              text-align: center;
+        }
+        .shop-img-pc {
+              border-radius: 10%;
+        }
+        .click-img-pc {
+              border-radius: 10%;
+        }
+        .shop-img-mobile {
+              border-radius: 10%;
+        }
+        .click-img-mobile {
+              border-radius: 10%;
+        }
+        td {
+            item-align: center;
+            text-align: center;
+        }
+        .click-img-pc:hover {
+            cursor: pointer;
+            box-shadow: 3px 3px 5px 3px #ff368d; /* Ширина, вид и цвет рамки */
+        }
+        .shop-img-pc:hover {
+            cursor: pointer;
+            box-shadow: 3px 3px 5px 3px #ff368d; /* Ширина, вид и цвет рамки */
+        }
+        .click-img-pc:active {
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
+        .shop-img-pc:active {
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
+
+         .flowtext{
+              background: linear-gradient(90deg, #e933ff, #ffb400, #ff3333, #334dff, #e933ff);
+              background-size: 200% auto;
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              animation: textflow 5s linear infinite;
+         }
+
+         @keyframes textflow {
+                from {background-position: 0% center}
+                to {background-position: 200% center}
+         }
+
+        .click-img-mobile:active {
+            transform: translateY(5px);
+            box-shadow:  -1px -1px 5px 1px #ff368d;
+        }
+        .shop-img-mobile:active {
+          box-shadow:  -1px -1px 5px 1px #ff368d;
+          transform: translateY(4px);
+        }
+
+        .star-img-mobile {
+            align:top
+        }
+        .login-img-mobile {
+            align:top
+        }
+
+
+
+
+
+        @font-face {
+          font-family: "AnimeMatrixEN";
+            src: url({{url_for('static', filename='subset-AniMeMatrix-MB_EN.woff')}}) format('woff2')
+          font-style: normal;
+          font-weight: normal;
+            bold;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <table class="tabl-mobile">
+        <tr>
+            <td colspan="4" height="100%">
+                <div class="heading-mobile">Cookie Combat</div>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%">
+                <a href={{url_for('login')}}>
+                    <img class="login-img-mobile" src="/static/images/login.png" width="100%" alt="login">
+                </a>
+            </td>
+            <td width="80%" colspan="2">
+                <div class="pointslabel-mobile">cookies: <span id="cookies-m">0</span></div>
+            </td>
+            <td width="10%">
+                <a href={{url_for('rating')}}>
+                    <img class="star-img-mobile" src="/static/images/star.png" width="80%" alt="login">
+                </a>
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td colspan="4">
+                <div class="click-container">
+                    <img class="click-img-mobile" src="/static/images/click.png"
+                         onclick="clickButton()" width="45%"
+                         alt="Click!">
+                    <p class="tablelabelC-mobile"> click faster</p>
+                </div>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td width="50%" colspan="2">
+                <div class="tablelabelR-mobile"> auto<br> clicker <br><b><span id="auto-m">0</span></b></div>
+            </td>
+            <td width="50%" colspan="2">
+                <div class="item">
+                    <img class="shop-img-mobile" src="/static/images/autoclicker.png"
+                         onclick="buyAutoclicker()" width="95%"
+                         alt="Купить автокликер">
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="item">
+                    <img class="shop-img-mobile" src="/static/images/upgrade.png"
+                         onclick="buyUpgrade()" width="60%"
+                         alt="Улучшить клик">
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="tablelabelL-mobile"> click<br> power<br><b><span id="upgrade-m">0</span></b></div>
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    <table class="tabl-pc">
+        <tr>
+            <td colspan="4" height="100%">
+                <div class="heading-pc">Cookie Combat</div>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="pointslabel-pc">cookies: <span id="cookies">0</span></div>
+            </td>
+        </tr>
+        <tr>
+
+            <td rowspan="2" width="30%">
+                <div class="click-container">
+                    <img class="click-img-pc" src="/static/images/click.png"
+                         onclick="clickButton()" width="95%"
+                         alt="Click!">
+                    <p>
+                    <div class="tablelabelC-pc"> click faster</div>
+                    </p>
+                </div>
+
+            </td>
+            <td style="text-align: left">
+                <a href={{url_for('login')}}>
+                    <img class="login-img-pc" src="/static/images/login.png" width="20%" alt="login">
+                </a>
+            </td>
+            <td width="18%">
+                <div class="tablelabelR-pc"> auto<br> clicker<br><b><span id="auto">0</span></b></div>
+            </td>
+            <td width="18%">
+                <div class="item">
+                    <img class="shop-img-pc" src="/static/images/autoclicker.png"
+                         onclick="buyAutoclicker()" width="95%"
+                         alt="Купить автокликер">
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td width="34%" style="text-align: left">
+                <a href={{url_for('rating')}}>
+                    <img class="star-img-pc" src="/static/images/star.png" width="20%" alt="login">
+                </a>
+            </td>
+            <td>
+                <div class="item">
+                    <img class="shop-img-pc" src="/static/images/upgrade.png"
+                         onclick="buyUpgrade()" width="95%"
+                         alt="Улучшить клик">
+                </div>
+            </td>
+            <td>
+                <div class="tablelabelL-pc"> click<br> power<br><b><span id="upgrade">0</span></b></div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

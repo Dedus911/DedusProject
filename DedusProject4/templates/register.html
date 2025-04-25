@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Loging</title>
+    <script>
+        let audio = new Audio("/static/audio/background2.mp3");
+        document.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Автозапуск звука заблокирован браузером: ", error));
+            }
+        });
+        audio.loop = true;
+    </script>
+    <style>
+        body {
+         background-image: url('static/images/backgroundimg.jpg');
+         background-attachment: fixed;
+         background-size: cover;
+        }
+        label{
+            text-align: center;
+            font-size: 140%;
+            color: #fcba03;
+            font-family: impact;
+        }
+        p{
+        font-size: 200%;
+            color: #fcba03;
+            font-family: impact;
+        }
+        input{
+            background-color: #ad9a63;
+            color: #ffffff;
+            width: 50%;
+            font-size: 100%;
+        }
+        button{
+            background-color: #ad9a63;
+            color: #ffffff;
+            width: 35%;
+            font-size: 100%;
+        }
+         @media  screen and (min-width: 700px) {
+            .form_auth_block{
+                 margin: 0 auto;
+                text-align: center;
+                width:100%;
+            }
+        }
+        @media  screen and (min-width: 700px) {
+            .form_auth_block{
+                margin: 0 auto;
+                text-align: center;
+                width:500px;
+            }
+        }
+        @media  screen and (max-width: 700px) {
+          .form_auth_block{
+                text-align: center;
+                width:100%;
+            }
+        }
+    </style>
+</head>
+<body style="align-item: center;">
+<a href={{url_for('index')}}>
+    <img class="back-img-pic" src="/static/images/back2.png" width="5%" alt="back">
+</a>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li style="color:#ffffff">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<div class="form_auth_block">
+    <div class="form_auth_block_content">
+        <p class="form_auth_block_head_text">Регистрация</p>
+        <form class="form_auth_style" method="post">
+            <label>Введите Ваш никнейм</label><br>
+            <input type="text" name="login" placeholder="Введите Ваш никнейм" required><br>
+            <label>Введите Ваш пароль</label><br>
+            <input type="password" name="password" placeholder="Введите пароль" required>
+            <br><br><br><br>
+            <button class="form_reg_button" type="submit" name="form_reg_submit">Зарегестрироваться</button><br>
+            <a href={{url_for('login')}}>login</a>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

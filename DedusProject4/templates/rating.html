@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Ranking</title>
+    <script>
+        let audio = new Audio("/static/audio/background3.mp3");
+        document.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Автозапуск звука заблокирован браузером: ", error));
+            }
+        });
+        audio.loop = true;
+    </script>
+    <style>
+        body {
+        background-image: url('static/images/backgroundimg.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+       }
+
+
+
+        .list_bord{
+           margin: 0 auto;
+           text-align: center;
+           width:70%;
+
+       }
+
+       .back-img-pic{
+
+       }
+
+
+
+        @media  screen and (min-width: 700px) {
+           .form_auth_block{
+               margin: 0 auto;
+               text-align: center;
+               width:700px;
+                background-color: #ad9a63;
+                background-size: cover;
+               border-radius: 10px;
+               height: 950px;
+           }
+
+           p{
+                text-align: center;
+                font-size: 600%;
+                color: #ffffff;
+                font-family: impact;
+                 text-shadow: 1px 1px 1px #957dad,
+                 1px 2px 1px #957dad,
+                 1px 3px 1px #957dad,
+                 1px 4px 1px #957dad,
+                 1px 5px 1px #957dad,
+                 1px 6px 1px #957dad,
+                 1px 10px 5px rgba(16, 16, 16, 0.5),
+                 1px 15px 10px rgba(16, 16, 16, 0.4),
+                 1px 20px 30px rgba(16, 16, 16, 0.3),
+                 1px 25px 50px rgba(16, 16, 16, 0.2);
+            }
+            .list_pref{
+                text-align: left;
+                font-size: 300%;
+                color: #e6a1ff;
+                font-family: impact;
+                text-shadow: 1px 1px 1px #957dad,
+                 1px 2px 1px #957dad,
+                 1px 3px 1px #957dad,
+                 1px 4px 1px #957dad,
+                 1px 5px 1px #957dad,
+                 1px 6px 1px #957dad,
+                 1px 10px 5px rgba(16, 16, 16, 0.5),
+                 1px 15px 10px rgba(16, 16, 16, 0.4),
+                 1px 20px 30px rgba(16, 16, 16, 0.3),
+                 1px 25px 50px rgba(16, 16, 16, 0.2);
+           }
+       }
+       @media  screen and (max-width: 700px) {
+         .form_auth_block{
+               margin: 0 auto;
+               text-align: center;
+               width:100%;
+                background-color: #ad9a63;
+                background-size: cover;
+               border-radius: 10px;
+               height: 600px;
+           }
+            p{
+                text-align: center;
+                font-size: 300%;
+                color: #ffffff;
+                font-family: impact;
+                 text-shadow: 1px 1px 1px #957dad,
+                 1px 2px 1px #957dad,
+                 1px 3px 1px #957dad,
+                 1px 4px 1px #957dad,
+                 1px 5px 1px #957dad,
+                 1px 6px 1px #957dad,
+                 1px 10px 5px rgba(16, 16, 16, 0.5),
+                 1px 15px 10px rgba(16, 16, 16, 0.4),
+                 1px 20px 30px rgba(16, 16, 16, 0.3),
+                 1px 25px 50px rgba(16, 16, 16, 0.2);
+            }
+                .list_pref{
+                text-align: left;
+                font-size: 200%;
+                color: #e6a1ff;
+                font-family: impact;
+                text-shadow: 1px 1px 1px #957dad,
+                 1px 2px 1px #957dad,
+                 1px 3px 1px #957dad,
+                 1px 4px 1px #957dad,
+                 1px 5px 1px #957dad,
+                 1px 6px 1px #957dad,
+                 1px 10px 5px rgba(16, 16, 16, 0.5),
+                 1px 15px 10px rgba(16, 16, 16, 0.4),
+                 1px 20px 30px rgba(16, 16, 16, 0.3),
+                 1px 25px 50px rgba(16, 16, 16, 0.2);
+           }
+       }
+
+    </style>
+</head>
+<body>
+
+<div class="form_auth_block" border>
+
+    <p>Best players</p>
+    <div class="list_bord">
+        <ol class="list_pref">
+            {% if users %}
+                {% for user in users%}
+                <li>{{ user.login }} {{user.money()}}</li>
+                {% endfor %}
+            {% endif %}
+        </ol>
+    </div>
+
+    <a href={{url_for('index')}}>
+        <img class="back-img-pic" src="/static/images/back.png" width="10%" alt="back">
+    </a>
+</div>
+</body>
+</html>
