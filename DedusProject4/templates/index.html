@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="author" content="Аникин Тимофей">
     <meta name="discription" content="clicker">
-    <meta name="keywords" content="clicker,cookie,game,кликер,куки,игра">
+    <meta name="keywords" content="clicker,emerald,game,кликер,изумруд,игра">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-    <title>Cookie Combat</title>
+    <title>Emerald Combat</title>
     <script>
         let audio = new Audio("/static/audio/background1.mp3");
         document.addEventListener("click", () => {
@@ -19,8 +19,8 @@
         async function updateState() {
             let response = await fetch('/state');
             let data = await response.json();
-            document.getElementById("cookie").innerText = data.coins;
-            document.getElementById("cookie-m").innerText = data.coins;
+            document.getElementById("emerald").innerText = data.coins;
+            document.getElementById("emerald-m").innerText = data.coins;
             document.getElementById("auto").innerText = data.auto;
             document.getElementById("auto-m").innerText = data.auto;
             document.getElementById("upgrade").innerText = data.upgrade;
@@ -291,7 +291,7 @@
     <table class="tabl-mobile">
         <tr>
             <td colspan="4" height="100%">
-                <div class="heading-mobile">Cookie Combat</div>
+                <div class="heading-mobile">Emerald Combat</div>
             </td>
         </tr>
         <tr>
@@ -301,7 +301,7 @@
                 </a>
             </td>
             <td width="80%" colspan="2">
-                <div class="pointslabel-mobile">cookie: <span id="cookie-m">0</span></div>
+                <div class="pointslabel-mobile">emerald: <span id="emerald-m">0</span></div>
             </td>
             <td width="10%">
                 <a href={{url_for('rating')}}>
@@ -357,13 +357,13 @@
     <table class="tabl-pc">
         <tr>
             <td colspan="4" height="100%">
-                <div class="heading-pc">Cookie Combat</div>
+                <div class="heading-pc">Emerald Combat</div>
             </td>
 
         </tr>
         <tr>
             <td colspan="4">
-                <div class="pointslabel-pc">cookie: <span id="cookie">0</span></div>
+                <div class="pointslabel-pc">emerald: <span id="emerald">0</span></div>
             </td>
         </tr>
         <tr>
